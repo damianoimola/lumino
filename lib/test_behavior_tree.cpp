@@ -2,9 +2,7 @@
 
 using namespace BT;
 
-// clang-format off
 static const char* xml_text = R"(
-
  <root BTCPP_format="4" >
 
      <BehaviorTree ID="MainTree">
@@ -12,13 +10,18 @@ static const char* xml_text = R"(
             <AlwaysSuccess/>
             <SaySomething   message="this works too" />
             <ThinkWhatToSay text="{the_answer}"/>
+            <ThinkWhatToSay2 text="{the_answer2}"/>
+            <SaySomething   message="{the_answer2}" />
             <SaySomething   message="{the_answer}" />
         </Sequence>
      </BehaviorTree>
 
  </root>
  )";
-// clang-format on
+
+
+
+
 
 class SaySomething : public BT::SyncActionNode
 {
@@ -41,6 +44,8 @@ public:
     }
 };
 
+
+
 class ThinkWhatToSay : public BT::SyncActionNode
 {
 public:
@@ -60,17 +65,39 @@ public:
     }
 };
 
-int main()
+
+class ThinkWhatToSay2 : public BT::SyncActionNode
 {
+public:
+    ThinkWhatToSay2(const std::string& name, const BT::NodeConfig& config) :
+          BT::SyncActionNode(name, config)
+    {}
 
-    BehaviorTreeFactory factory;
+    BT::NodeStatus tick() override
+    {
+        setOutput("text", "Hola");
+        return BT::NodeStatus::SUCCESS;
+    }
 
-    factory.registerNodeType<SaySomething>("SaySomething");
-    factory.registerNodeType<ThinkWhatToSay>("ThinkWhatToSay");
+    static BT::PortsList providedPorts()
+    {
+        return {BT::OutputPort<std::string>("text")};
+    }
+};
 
-    auto tree = factory.createTreeFromText(xml_text);
 
-    tree.tickWhileRunning();
-
-    return 0;
-}
+// int main()
+// {
+//
+//     BehaviorTreeFactory factory;
+//
+//     factory.registerNodeType<SaySomething>("SaySomething");
+//     factory.registerNodeType<ThinkWhatToSay>("ThinkWhatToSay");
+//     factory.registerNodeType<ThinkWhatToSay2>("ThinkWhatToSay2");
+//
+//     auto tree = factory.createTreeFromText(xml_text);
+//
+//     tree.tickWhileRunning();
+//
+//     return 0;
+// }
