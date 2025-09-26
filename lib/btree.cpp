@@ -19,5 +19,6 @@ int BTree::btree_main() {
     std::cout << file_contents << std::endl;
 
     behavior_file.close();
+
     return 0;
 };
