@@ -5,6 +5,7 @@
 #include "lib/btree.h"
 
 int main() {
-    BTree::btree_main();
+    BTree btree;
+    btree.btree_main();
     return 0;
 }

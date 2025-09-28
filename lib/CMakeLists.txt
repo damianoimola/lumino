@@ -3,4 +3,8 @@ add_library(lumino_lib
         btree.cpp
         btree.h
         action_nodes.cpp
-        action_nodes.h)
+        action_nodes.h
+        example_btree.cpp
+        example_btree.h
+        example_btree2.cpp
+        example_btree2.h)

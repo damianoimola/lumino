@@ -1,5 +1,7 @@
 <root BTCPP_format="4" >
 
+    <include path="example_btree.xml"/>
+
     <BehaviorTree ID="MainTree">
         <Sequence name="root">
             <AlwaysSuccess/>
@@ -8,6 +10,7 @@
             <ThinkWhatToSay2 text="{the_answer2}"/>
             <SaySomething   message="{the_answer2}" />
             <SaySomething   message="{the_answer}" />
+            <SubTree ID="GraspObject"/>
         </Sequence>
     </BehaviorTree>
 
