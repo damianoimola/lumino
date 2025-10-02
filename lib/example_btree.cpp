@@ -7,6 +7,26 @@
 
 using namespace BT;
 
+
+// ########################################################
+// ###    TREE                                          ###
+// ########################################################
+void GraspObjectTree::register_tree(BT::BehaviorTreeFactory *factory) {
+    factory->registerNodeType<ApproachObject>("ApproachObject");
+    factory->registerSimpleCondition("CheckBattery", [&](BT::TreeNode&) { return CheckBattery(); });
+    GripperInterface gripper;
+    factory->registerSimpleAction("OpenGripper", [&](BT::TreeNode&){ return gripper.open(); } );
+    factory->registerSimpleAction("CloseGripper", [&](BT::TreeNode&){ return gripper.close(); } );
+}
+
+
+
+
+
+
+// ########################################################
+// ###    METHODS                                       ###
+// ########################################################
 NodeStatus ApproachObject::tick() {
     std::cout << "ApproachObject: " << this->name() << std::endl;
     return BT::NodeStatus::SUCCESS;

@@ -7,6 +7,27 @@
 #include <iostream>
 #include <string>
 
+#include "base_btree.h"
+
+
+// ########################################################
+// ###    TREE                                          ###
+// ########################################################
+
+class MainTree : BaseBTree
+{
+public:
+    MainTree()= default;
+    ~MainTree()= default;
+    void register_tree(BT::BehaviorTreeFactory *factory) override;
+};
+
+
+
+
+// ########################################################
+// ###    METHODS                                       ###
+// ########################################################
 
 // this class read a const message or a port-exposed message
 class SaySomething : public BT::SyncActionNode

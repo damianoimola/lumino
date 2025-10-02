@@ -48,25 +48,20 @@ int BTree::print() {
 
 
 
-int BTree::btree_main() {
+int BTree::btree_main() const {
     BT::BehaviorTreeFactory factory;
 
     // --- MAIN TREE ---
-    factory.registerNodeType<SaySomething>("SaySomething");
-    factory.registerNodeType<ThinkWhatToSay>("ThinkWhatToSay");
-    factory.registerNodeType<ThinkWhatToSay2>("ThinkWhatToSay2");
+    MainTree main_tree_obj;
+    main_tree_obj.register_tree(&factory);
 
     // --- GRASP OBJECT TREE ---
-    factory.registerNodeType<ApproachObject>("ApproachObject");
-    factory.registerSimpleCondition("CheckBattery", [&](BT::TreeNode&) { return CheckBattery(); });
-    GripperInterface gripper;
-    factory.registerSimpleAction("OpenGripper", [&](BT::TreeNode&){ return gripper.open(); } );
-    factory.registerSimpleAction("CloseGripper", [&](BT::TreeNode&){ return gripper.close(); } );
+    GraspObjectTree grasp_tree_obj;
+    grasp_tree_obj.register_tree(&factory);
 
 
     // registering all `.xml` files
     this->register_all_xml_files(&factory);
-
 
 
     // tick the main tree

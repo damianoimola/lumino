@@ -5,13 +5,27 @@
 #include "example_btree2.h"
 
 
+// ########################################################
+// ###    TREE                                          ###
+// ########################################################
+void MainTree::register_tree(BT::BehaviorTreeFactory *factory) {
+    factory->registerNodeType<SaySomething>("SaySomething");
+    factory->registerNodeType<ThinkWhatToSay>("ThinkWhatToSay");
+    factory->registerNodeType<ThinkWhatToSay2>("ThinkWhatToSay2");
+}
 
+
+
+
+
+// ########################################################
+// ###    METHODS                                       ###
+// ########################################################
 BT::NodeStatus SaySomething::tick()
 {
     // std::string msg;
     // getInput("message", msg);
     BT::Expected<std::string> msg = getInput<std::string>("message");
-
 
     // Check if expected is valid. If not, throw its error
     if (!msg)

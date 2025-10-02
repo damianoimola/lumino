@@ -18,7 +18,7 @@ public:
     BTree();
     ~BTree();
 
-    int btree_main();
+    int btree_main() const;
 
     void register_all_xml_files(BT::BehaviorTreeFactory *factory) const;
 
