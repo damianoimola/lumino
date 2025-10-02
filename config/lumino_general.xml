@@ -1,0 +1,8 @@
+<root BTCPP_format="4" >
+    <BehaviorTree ID="GeneralTree">
+        <Sequence>
+            <AlwaysSuccess/>
+            <DisplayTime name="display_time" />
+        </Sequence>
+    </BehaviorTree>
+</root>

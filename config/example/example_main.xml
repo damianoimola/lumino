@@ -1,6 +1,6 @@
 <root BTCPP_format="4" >
 
-    <include path="example_btree.xml"/>
+    <include path="example_subtree.xml"/>
 
     <BehaviorTree ID="MainTree">
         <Sequence name="root">

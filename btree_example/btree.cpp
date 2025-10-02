@@ -4,6 +4,9 @@
 
 #include "btree.h"
 
+#include "example_btree.h"
+#include "example_btree2.h"
+
 
 BTree::BTree() {this->behavior_file = std::ifstream(this->FILE_PATH);};
 
@@ -15,13 +18,11 @@ void BTree::register_all_xml_files(BT::BehaviorTreeFactory *factory) const {
     // Find all the XML files in a folder and register all of them.
     // We will use std::filesystem::directory_iterator
 
-    std::cout << "######## REGISTERING XML FILES ########" << std::endl;
     using std::filesystem::directory_iterator;
     for (auto const& entry : directory_iterator(this->XML_DIR))
     {
         if(entry.path().extension() == ".xml")
         {
-            std::cout << "[INFO] PROCESSING FILE: " << entry.path().string() << std::endl;
             factory->registerBehaviorTreeFromFile(entry.path().string());
         }
     }
@@ -51,12 +52,12 @@ int BTree::btree_main() const {
     BT::BehaviorTreeFactory factory;
 
     // --- MAIN TREE ---
-    InitialBTree initial_tree_obj;
-    initial_tree_obj.register_tree(&factory);
+    MainTree main_tree_obj;
+    main_tree_obj.register_tree(&factory);
 
     // --- GRASP OBJECT TREE ---
-    GeneralBTree general_tree_obj;
-    general_tree_obj.register_tree(&factory);
+    GraspObjectTree grasp_tree_obj;
+    grasp_tree_obj.register_tree(&factory);
 
 
     // registering all `.xml` files
@@ -64,14 +65,14 @@ int BTree::btree_main() const {
 
 
     // tick the main tree
-    std::cout << "######## INITIAL TREE ########" << std::endl;
-    auto initial_tree = factory.createTree("InitialTree");
-    initial_tree.tickWhileRunning();
+    std::cout << "\t ######## MAIN TREE ########" << std::endl;
+    auto main_tree = factory.createTree("MainTree");
+    main_tree.tickWhileRunning();
 
     // tick the subtree GraspObject
-    std::cout << "######## GENERAL TREE ########" << std::endl;
-    auto general_tree = factory.createTree("GeneralTree");
-    general_tree.tickWhileRunning();
+    std::cout << "\t ######## GRASP OBJECT TREE ########" << std::endl;
+    auto grasp_tree = factory.createTree("GraspObject");
+    grasp_tree.tickWhileRunning();
 
     return 0;
 }

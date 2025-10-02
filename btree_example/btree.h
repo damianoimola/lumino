@@ -8,14 +8,13 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 
-#include "general_btree.h"
-#include "initial_btree.h"
-
+#include "example_btree.h"
+#include "example_btree2.h"
 
 class BTree {
 public:
-    std::string XML_DIR = "../config";
-    std::string FILE_PATH = "../config/lumino_initial.xml";
+    std::string XML_DIR = "../config/example";
+    std::string FILE_PATH = "../config/example/example_main.xml";
     std::ifstream behavior_file;
 
     BTree();

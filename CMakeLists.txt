@@ -5,6 +5,10 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(lumino main.cpp)
 
+## build /btree_example
+#add_subdirectory(btree_example)
+#target_link_libraries(lumino PRIVATE lumino_example)
+
 # build /lib
 add_subdirectory(lib)
 target_link_libraries(lumino PRIVATE lumino_lib)

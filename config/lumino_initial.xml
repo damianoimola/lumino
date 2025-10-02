@@ -1,0 +1,14 @@
+<root BTCPP_format="4" >
+
+    <include path="lumino_general.xml"/>
+
+    <BehaviorTree ID="InitialTree">
+        <Sequence name="root">
+            <WakeUp name="wake_up" />
+            <Wave name="wave" />
+
+            <SubTree ID="GeneralTree"/>
+        </Sequence>
+    </BehaviorTree>
+
+</root>

@@ -1,0 +1,9 @@
+add_library(lumino_example
+        test_behavior_tree.cpp
+        btree.cpp
+        btree.h
+        example_btree.cpp
+        example_btree.h
+        example_btree2.cpp
+        example_btree2.h
+        base_btree.h)
